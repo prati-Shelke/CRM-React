@@ -1,0 +1,21 @@
+.form-group input:focus{
+    outline:none !important; 
+    box-shadow: none !important;
+    border-color: #ccc;
+ }
+ 
+ #inputState{
+    outline:none !important; 
+    box-shadow: none !important;
+    border-color: #ccc;
+ }
+ .label{
+     float: left;
+     color:#555459;
+     font-size: 18px;
+     font-weight: bold;
+ }
+ .recaptcha{
+     justify-content: center;
+     text-align: center;
+ }
