@@ -1,10 +1,52 @@
-import react from 'react'
+import react, { useState } from 'react'
 import '../Styles/ForgotPassword.css'
 import Logo from '../Images/Logo.jpeg'
+import httpServices from '../Services/HttpServices'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+toast.configure()
 
 
 function ForgotPassword()
 {
+
+    let [Email,setEmail] = useState('')
+    const regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    let icon = <FontAwesomeIcon icon={faTriangleExclamation} size="lg"/>
+    
+    const SendMail = async() =>
+    {
+        try 
+        {
+            if(Email === '' || regex.test(Email)=== false)
+            {
+                // notify()
+                let msg = <p style={{fontSize:14}}>Error ! <br/> Enter your email </p>
+                toast.error(msg ,
+                { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 , theme: "colored",icon:icon})
+            }
+            else
+            {
+                let d = {email:Email}
+                let data = await httpServices.post('sendForgotLink',d)
+                console.log(data);
+            }
+            
+        }
+        catch (err) {
+            
+                let msg = <p style={{fontSize:14}}>Error ! <br/> Email does not exists , Please <br/> Enter correct email address ! </p>
+                toast.error(msg ,
+                    { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 , theme: "colored",icon:icon})
+                
+                console.log(`Error: ${err.message}`);
+        }
+    }
+
+
     return (
         <div className="container h-100">
     		<div className="row h-100">
@@ -16,11 +58,11 @@ function ForgotPassword()
                                         <div className='row'>
                                             <span className='col-2'></span>
                                             <div className="col-8">
-                                                <input className="form-control mt-4 email" type="email" name="email" placeholder="Enter your email"/>
+                                                <input className="form-control mt-4 email" type="email" name="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email"/>
                                             </div>
 
                                             <div className="text-center mt-4">
-                                                <button type="submit" className="btn btn-primary col-4">Reset password</button>
+                                                <a className="btn btn-primary col-4" style={{color:"white"}} onClick={()=>SendMail()}>Reset password</a>
                                             </div>
                                         </div>
 									</form>
@@ -33,25 +75,3 @@ function ForgotPassword()
 }
   
   export default ForgotPassword;
-
-
-
- {/* <center><img src="assets/images/logo.jpeg" width="300"/>
-                </center>
-                <div class="row">
-                    <form div="" class="col-sm-8 col-sm-offset-2 p-t-20 ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-invalid-recaptcha" name="forgotPasswordForm" novalidate="" ng-submit="sendForgotLink(forgotPasswordForm)">
-                        <div class="form-group">
-                            <input type="email" class="form-control height-42 ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" id="emailaddress" placeholder="Email" ng-model="email" required=""/>
-                        </div>
-
-                        
-                        <div class="form-group">
-                            <div vc-recaptcha="" ng-model="gRecaptchaResponse" key="reCaptcha_Key" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LdH_DMeAAAAAFWRLmZIDHUdBrhUjyN2s5CzHbrx&amp;co=aHR0cDovL2Rldi5jcm0ubmdtaW5kcy5jb206ODA.&amp;hl=en-GB&amp;v=1B_yv3CBEV10KtI2HJ6eEXhJ&amp;size=normal&amp;cb=tivf8tqeh4j3" width="304" height="78" role="presentation" name="a-vbocuhqnfgxk" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
-                        </div>
-                        <div class="g-recaptcha" data-sitekey="6Lf2wzAUAAAAALmXhFsEd7GH70OBDcCxqhEanHAv"></div> 
-                        <div class="g-recaptcha" data-sitekey="6Lf2wzAUAAAAALmXhFsEd7GH70OBDcCxqhEanHAv"></div> 
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Reset Password</button>
-                        
-                        
-                    </form>
-                </div> */}
