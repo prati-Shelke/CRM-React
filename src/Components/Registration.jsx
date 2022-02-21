@@ -131,30 +131,30 @@ function Registration() {
                   value={comapnyIndustry}
                   onChange={(e) => handleComapnyindustryChange(e)}
                 >
-                  <option defaultValue="Select Industry">
+                   <option defaultValue="Select Industry">
                     Select Industry
                   </option>
-                  <option value="Software,App Development">
+                  <option value="software">
                     Software,App Development
                   </option>
-                  <option value="Health">Health</option>
-                  <option value="Tech Sartup">Tech Startup</option>
-                  <option value="Education and Training">
+                  <option value="health">Health</option>
+                  <option value="startup">Tech Startup</option>
+                  <option value="educationAndTraining">
                     Education and Training
                   </option>
-                  <option value="Real Estate">Real Estate</option>
-                  <option value="Creative Agency(Web,Advertising,Video)">
+                  <option value="realEstate">Real Estate</option>
+                  <option value="creativeAgency">
                     Creative Agency(Web,Advertising,Video)
                   </option>
-                  <option value="Financial or Credit Services">
+                  <option value="financialCreditServices">
                     Financial or Credit Services
                   </option>
-                  <option value="News,Media and Publication">
+                  <option value="news">
                     News,Media and Publication
                   </option>
-                  <option value="Consulting">Consulting</option>
-                  <option value="Manifacturing">Manifacturing</option>
-                  <option value="Construction">Construction</option>
+                  <option value="consulting">Consulting</option>
+                  <option value="manifacturing">Manifacturing</option>
+                  <option value="construction">Construction</option>
                 </select>
               </div>
               <div className="form-group col-md-12 input-group-lg">
