@@ -2,11 +2,11 @@ import crmURL from '../api'
 
 const HttpServices = {
     get: async (query) => {
-            const res = await crmURL.get(query);
+            const res = await crmURL.get(`${query}`);
             return res.data
         },
-    post: async (query, datas) => {
-        const res = await crmURL.post(query, datas);
+    post: async (query, data) => {
+        const res = await crmURL.post(`${query}`, data);
         return res.data
     },
     put: async (query, id, datas) => {
