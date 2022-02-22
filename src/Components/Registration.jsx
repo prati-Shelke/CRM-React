@@ -131,7 +131,7 @@ function Registration() {
                   value={comapnyIndustry}
                   onChange={(e) => handleComapnyindustryChange(e)}
                 >
-                  <option defaultValue="Select Industry">
+                   <option defaultValue="Select Industry">
                     Select Industry
                   </option>
                   <option value="software">
