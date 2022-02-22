@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import ReCAPTCHA from "react-google-recaptcha";
 import HttpServices from "../Services/HttpServices";
 import "../Styles/Registration.css";
@@ -8,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Registration() {
+  const navigate=useNavigate();
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [company, setComapny] = useState("");
@@ -180,7 +182,7 @@ function Registration() {
       </div>
       <div className="text-muted">
         <span className="footer">
-          Already have an account? <a href="#">Login</a>
+          Already have an account? <a onClick={()=>navigate("/login")}>Login</a>
         </span>
       </div>
     </>
