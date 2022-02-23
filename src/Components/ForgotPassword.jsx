@@ -5,7 +5,7 @@ import httpServices from '../Services/HttpServices'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faTriangleExclamation,faCheck} from '@fortawesome/free-solid-svg-icons'
 toast.configure()
 
 
@@ -24,21 +24,25 @@ function ForgotPassword()
             if(Email === '' || regex.test(Email)=== false)
             {
                 // notify()
-                let msg = <p style={{fontSize:14}}>Error ! <br/> Enter your email </p>
+                let msg = <p style={{fontSize:15}}>Error ! <br/> Enter your email </p>
                 toast.error(msg ,
                 { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 , theme: "colored",icon:icon})
             }
             else
             {
-                let d = {email:Email}
-                let data = await httpServices.post('sendForgotLink',d)
+                let data = await httpServices.post('sendForgotLink',{email:Email})
+                let Sicon = <FontAwesomeIcon icon={faCheck} size="lg"/>
+                let msg = <p style={{fontSize:15}}>Success ! <br/> An Email with reset password instructions has been sent. </p>
+                toast.success(msg ,
+                    { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 , theme: "colored",icon:Sicon})
+                
                 console.log(data);
             }
             
         }
         catch (err) {
             
-                let msg = <p style={{fontSize:14}}>Error ! <br/> Email does not exists , Please <br/> Enter correct email address ! </p>
+                let msg = <p style={{fontSize:15}}>Error ! <br/> Email does not exists , Please <br/> Enter correct email address ! </p>
                 toast.error(msg ,
                     { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 , theme: "colored",icon:icon})
                 
