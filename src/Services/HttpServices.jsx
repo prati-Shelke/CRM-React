@@ -5,9 +5,9 @@ const HttpServices = {
             const res = await crmURL.get(`${query}`);
             return res.data
         },
-    post: async (query, data) => {
-        const res = await crmURL.post(`${query}`, data);
-        return res.data
+    post: async (query, datas) => {
+        const res = await crmURL.post(`${query}`, datas);
+        return res
     },
     put: async (query, id, datas) => {
         const res = await crmURL.put(`${query}/${id}`, datas);
