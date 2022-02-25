@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation,faCheck} from '@fortawesome/free-solid-svg-icons'
 toast.configure()
 
-
 function ForgotPassword()
 {
 
